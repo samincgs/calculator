@@ -1,7 +1,8 @@
 import customtkinter as ctk
 import darkdetect
+from PIL import Image
 from settings import *
-from buttons import Button
+from buttons import Button, ImageButton
 
 class Calculator(ctk.CTk):
     def __init__(self, is_dark):
@@ -40,11 +41,39 @@ class Calculator(ctk.CTk):
         
         # clear button (AC)
         Button(parent = self, 
+               func= self.clear,
                text= OPERATORS['clear']['text'], 
                col = OPERATORS['clear']['col'], 
                row = OPERATORS['clear']['row'],
                font=main_font,
                )
+        
+        # percentage button %
+        Button(parent = self, 
+               func= self.percent,
+               text= OPERATORS['percent']['text'], 
+               col = OPERATORS['percent']['col'], 
+               row = OPERATORS['percent']['row'],
+               font=main_font,
+               )
+
+        #invert button
+        invert_image = ctk.CTkImage(light_image= Image.open(OPERATORS['invert']['image_path']['dark']), 
+                                    dark_image= Image.open(OPERATORS['invert']['image_path']['light']))
+        ImageButton(parent = self, 
+               func= self.invert,
+               col = OPERATORS['invert']['col'], 
+               row = OPERATORS['invert']['row'],
+               image=invert_image)
+    
+    def clear(self):
+        print('clear')
+        
+    def percent(self):
+        print('percent')
+        
+    def invert(self):
+        print('invert')
 
 class OutputLabel(ctk.CTkLabel):
     def __init__(self, parent, row, anchor, font, string_var):
