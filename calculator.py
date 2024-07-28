@@ -1,6 +1,7 @@
 import customtkinter as ctk
 import darkdetect
 from settings import *
+from buttons import Button
 
 class Calculator(ctk.CTk):
     def __init__(self, is_dark):
@@ -17,23 +18,40 @@ class Calculator(ctk.CTk):
         self.rowconfigure(rows, weight=1, uniform='a')
         self.grid_columnconfigure(cols, weight=1, uniform='a')
         
-        # widgets
+        #data
+        self.formula_string = ctk.StringVar(value='')
+        self.result_string = ctk.StringVar(value='0')
+        
+        #widgets
         self.create_widgets()
         
-        # run
+        #run
         self.mainloop()
 
+    
     def create_widgets(self):
+        #fonts
+        main_font = ctk.CTkFont(family=FONT, size=NORMAL_FONT_SIZE)
+        result_font = ctk.CTkFont(family=FONT, size=OUTPUT_FONT_SIZE)
+        
         #output labels
-        OutputLabel(self, 0, 'se') # formula
-        OutputLabel(self, 1, 'e') # result
+        OutputLabel(self, 0, 'se', main_font, self.formula_string) # formula
+        OutputLabel(self, 1, 'e', result_font, self.result_string) # result
+        
+        # clear button (AC)
+        Button(parent = self, 
+               text= OPERATORS['clear']['text'], 
+               col = OPERATORS['clear']['col'], 
+               row = OPERATORS['clear']['row'],
+               font=main_font,
+               )
 
 class OutputLabel(ctk.CTkLabel):
-    def __init__(self, parent, row, anchor):
-        super().__init__(master=parent, text='123')
+    def __init__(self, parent, row, anchor, font, string_var):
+        super().__init__(master=parent, textvariable=string_var, font=font)
         self.grid(row = row, column = 0, columnspan = 4, sticky = anchor, padx = 10)
-        
 
 if __name__ == '__main__':
     is_dark = darkdetect.isDark()
+    # Calculator(False)
     Calculator(is_dark)
