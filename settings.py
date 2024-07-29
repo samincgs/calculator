@@ -50,7 +50,7 @@ WHITE = '#EEEEEE'
 
 COLORS = {
     'dark-gray' : {'fg' : ('#DDDDDA','#545454'), 'hover' : ('#B6B6AF','#6A6A6A'), 'text' : (BLACK,WHITE)},
-    'light-gray' : {'fg' : ('#DDDDDA','#BBBBBB'), 'hover' : ('#B6B6AF','#DEDEDE'), 'text' : (WHITE,BLACK)}, # fix light version of light gray
-    'orange' : {'fg' : ('#DDDDDA','#FFA500'), 'hover' : ('#B6B6AF','#DEDEDE'), 'text' : (BLACK,WHITE)}, # fix light version of orange
+    'light-gray' : {'fg' : ('#43433D','#D9D9D9'), 'hover' : ('#5D5D55','#F2F2F2'), 'text' : (WHITE,BLACK)}, # fix light version of light gray
+    'orange' : {'fg' : ('#E69500','#FFA500'), 'hover' : ('#FFAE1A','#FFC04D'), 'text' : (BLACK,WHITE)}, # fix light version of orange
     
 }

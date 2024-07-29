@@ -13,7 +13,7 @@ class Button(CTkButton):
                          text_color=COLORS[color]['text']
                          )
         
-        self.grid(column=col, columnspan = span, row=row, sticky='nsew', padx = STYLES['gap'], pady = STYLES['gap']) 
+        self.grid(column=col, columnspan = span, row=row, sticky='nsew', padx = STYLES['gap'], pady = STYLES['gap'], ) 
 
 class NumButton(Button):
     def __init__(self, parent, text, func, col, row, font, span, color='light-gray'):
