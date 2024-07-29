@@ -145,16 +145,37 @@ class Calculator(ctk.CTk):
                 
                 self.display_nums.append(str(result))
                 
-                
-     
     def clear(self):
-        print('clear')
+        self.display_nums.clear()
+        self.full_operation.clear()
+        
+        self.result_string.set(0)
+        self.formula_string.set('')
         
     def percent(self):
-        print('percent')
+        current_number = ''.join(self.display_nums)
         
+        if current_number:
+            result = float(current_number) / 100
+            
+            self.result_string.set(result)
+            self.display_nums.pop()
+            self.display_nums.append(str(result))
+              
     def invert(self):
-        print('invert')
+        current_number = ''.join(self.display_nums)
+        
+        if current_number:
+            # positive or negative
+            if float(current_number) > 0:
+                self.display_nums.insert(0, '-')
+            else:
+                if current_number[0] == '-':
+                    self.display_nums.pop(0)
+                     
+            current_number = ''.join(self.display_nums)
+            self.result_string.set(current_number)
+        
 
 class OutputLabel(ctk.CTkLabel):
     def __init__(self, parent, row, anchor, font, string_var):
