@@ -2,7 +2,7 @@ import customtkinter as ctk
 import darkdetect
 from PIL import Image
 from settings import *
-from buttons import Button, ImageButton, NumButton
+from buttons import Button, ImageButton, NumButton, MathButton, MathImageButton
 
 class Calculator(ctk.CTk):
     def __init__(self, is_dark):
@@ -77,10 +77,40 @@ class Calculator(ctk.CTk):
                     font=main_font,
                     span=data['span']
                 )
+                
+        # math buttons
+        for operator, data in MATH_BUTTONS.items():
+            if operator == '/':
+                # image button
+                divide_image = ctk.CTkImage(light_image=Image.open(data['image_path']['dark']), 
+                                            dark_image=Image.open(data['image_path']['light']))
+                MathImageButton(
+                    parent = self,
+                    operator = operator, 
+                    func=self.math_press, 
+                    col = data['col'], 
+                    row = data['row'], 
+                    image = divide_image
+                )
+            else:
+                MathButton(
+                    parent=self,
+                    text=data['character'],
+                    operator=operator,
+                    func=self.math_press,
+                    col = data['col'],
+                    row = data['row'],
+                    font=main_font
+                )
+    
+    
     
     def num_press(self, value):
         print(value)
     
+    def math_press(self, value):
+        print(value)
+     
     def clear(self):
         print('clear')
         
